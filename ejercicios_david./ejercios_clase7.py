@@ -59,32 +59,35 @@ import os
 os.system('clear')
 # funcion del ejercicio 3
 
-def number_variable(pasword):
-    for i in range(len(password)):
-        print("es para que la variable verifique hacer")
-        pasword = int(pasword)
-        if pasword == int(pasword):
-            number_checkic = True
-    return(number_checkic)
+def es_contrasena_segura(contrasena):
+    return (len(contrasena) >= 8 and
+            any(c.isupper() for c in contrasena) and
+            any(c.isdigit() for c in contrasena))
 
-
+def main():
+    print("🔐 VALIDADOR DE CONTRASEÑAS SEGURAS 🔐")
+    print("- La contraseña debe tener al menos 8 caracteres")
+    print("- Debe incluir al menos una letra mayúscula")
+    print("- Debe incluir al menos un número\n")
 
 while True:
-    password = input("introduce una contraseña: ")
-    for i in range(len(password)):
-        caracter = password[i]
-        print(f"Índice: {i}, Carácter: {caracter}")
-        if caracter == upper(caracter):
-            capitalization_checkic = True
-            break
+        contrasena = input("Ingresa una contraseña (o 'salir' para terminar): ")
         
-    if len(password) > 8:
-        if capitalization_checkic == True:
-           if number_variable == True:
-              print("felicidades tu contraseña es segura")
-              break
+        if contrasena.lower() == "salir":
+            print("¡Hasta luego! 👋")
+            break
+            
+        if es_contrasena_segura(contrasena):
+            print("✅ ¡Contraseña segura! ✅\n")
         else:
-            print("no hay un mayuscula, intente denuevo")
-    else:
-        print("muy pocos caracteres, intente denuevo")
-    
+            print("❌ Contraseña insegura. Motivos:")
+            if len(contrasena) < 8:
+                print("- Tiene menos de 8 caracteres")
+            if not any(c.isupper() for c in contrasena):
+                print("- No tiene letras mayúsculas")
+            if not any(c.isdigit() for c in contrasena):
+                print("- No tiene números")
+            print()
+
+if __name__ == "__main__":
+    main()
