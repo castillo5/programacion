@@ -110,6 +110,15 @@ def ejercicio9():
     print(f"en minutos es {minutos}")
     print(f"en segundos es {segundos}")
 
+#10. Área y perímetro de un círculo
+def ejercicio10():
+    print("digite el radio de un circulo")
+    radio = input()
+    print(f"el area de su circulo es {3.1416 * (radio*radio)}")
+    print(f"su perimetro es igual a {2*3.1416*radio}")
+
+
+
 
 
 
@@ -134,6 +143,7 @@ print("6. Cálculo de propina y cuenta total")
 print("7. Extraer dígitos de un número de 4 cifras")
 print("8. Formato de precio con dos decimales")
 print("9. Conversor de minutos a días y horas")
+print("10. Área y perímetro de un círculo")
 
 opciones = input("digite sus posibilidades: ")
 
@@ -155,3 +165,6 @@ if opciones == "8":
     ejercicio8()
 if opciones == "9":
     ejercicio9()
+if opciones == "10":
+    ejercicio10()
+    
