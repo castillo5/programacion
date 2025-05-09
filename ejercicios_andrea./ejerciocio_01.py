@@ -104,7 +104,7 @@ def ejercicio14():
         print("el primero es mayor al segundo numero")
 
 #15. ¿Menor o igual?
-def ejercicio14():
+def ejercicio15():
     print("digite dos numero separados por un enter entre cada uno")
     num1 = int(input())
     num2 = int(input())
