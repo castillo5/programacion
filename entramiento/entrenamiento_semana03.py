@@ -25,7 +25,7 @@ def add_items():
     return(list_product,personal_products)
 
 
-def consult_product(list_productos):
+def consult_product():
     print("\nBuscar producto por nombre")
     search_name = input("Nombre del producto: ").strip().lower()
     
@@ -69,9 +69,9 @@ while True:
     if choice == "1":
         add_items()
     if choice == "2":
-        consult_product(list_product)
+        consult_product()
     if choice == "3":
-        change_price(list_product)
+        change_price()
 
 
 
