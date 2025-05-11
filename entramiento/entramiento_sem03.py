@@ -1,7 +1,10 @@
+import os
+os.system("clear") 
+
 list_product = []  # Lista global para almacenar los productos
 
 def add_items():
-    print("\n--- Añadir Producto ---")
+    print(" Añadir Producto ")
     name = input("Nombre del producto: ").strip().title()
     price = float(input("Precio: $"))
     available = input("¿Disponible? (s/n): ").lower() == "s"
@@ -13,23 +16,23 @@ def add_items():
     }
     
     list_product.append(new_product)
-    print(f"✅ {name} añadido correctamente!")
+    print(f"{name} añadido correctamente!")
 
 def consult_product():
-    print("\n--- Consultar Producto ---")
+    print("Consultar Producto ")
     search_name = input("Nombre del producto a buscar: ").strip().title()
     
     found = False
     for product in list_product:
         if product["nombre"] == search_name:
-            print(f"\nNombre: {product['nombre']}")
+            print(f"Nombre: {product['nombre']}")
             print(f"Precio: ${product['precio']:.2f}")
             print(f"Disponible: {'Sí' if product['disponible'] else 'No'}")
             found = True
             break
     
     if not found:
-        print("❌ Producto no encontrado")
+        print("Producto no encontrado")
 
 def change_price():
     print("\n--- Actualizar Precio ---")
@@ -39,26 +42,26 @@ def change_price():
         if product["nombre"] == product_name:
             new_price = float(input("Nuevo precio: $"))
             product["precio"] = new_price
-            print(f"✅ Precio actualizado a ${new_price:.2f}")
+            print(f"Precio actualizado a ${new_price:.2f}")
             return
     
-    print("❌ Producto no encontrado")
+    print("Producto no encontrado")
 
 def delete_product():
-    print("\n--- Eliminar Producto ---")
+    print("Eliminar Producto")
     product_name = input("Nombre del producto a eliminar: ").strip().title()
     
     for index, product in enumerate(list_product):
         if product["nombre"] == product_name:
             del list_product[index]
-            print(f"✅ Producto eliminado")
+            print(f"Producto eliminado")
             return
     
-    print("❌ Producto no encontrado")
+    print("Producto no encontrado")
 
 def calculate_total():
-    total = sum(product["precio"] for product in list_product)
-    print(f"\n💰 Valor total del inventario: ${total:.2f}")
+    calculate_total = lambda: sum(product["precio"] for product in list_product)
+    print(f"\n💰 Valor total del inventario: ${calculate_total}")
 
 while True:
     print("\n=== MENÚ PRINCIPAL ===")
@@ -68,9 +71,7 @@ while True:
     print("4. Eliminar productos")
     print("5. Calcular valor total")
     print("6. Salir")
-    
-    choice = input("\nElección: ").strip()
-    
+    choice = input("Elección: ").strip()
     if choice == "1":
         add_items()
     elif choice == "2":
@@ -82,14 +83,14 @@ while True:
     elif choice == "5":
         calculate_total()
     elif choice == "6":
-        print("\n¡Hasta luego! 👋")
+        print("Finalizado ")
         break
     else:
-        print("❌ Opción inválida. Intente nuevamente.")
+        print("Opción inválida. Intente nuevamente.")
     
     # Opcional: Preguntar si desea continuar después de cada operación
     if choice != "6":
-        cont = input("\n¿Desea realizar otra operación? (s/n): ").lower()
+        cont = input("¿Desea realizar otra operación? (s/n): ").lower()
         if cont != "s":
-            print("\n¡Hasta luego! 👋")
+            print("Finalizado")
             break
