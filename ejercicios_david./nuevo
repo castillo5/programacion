@@ -1,0 +1,139 @@
+Aquí tienes el código modificado con los cambios solicitados:
+
+```python
+import os
+os.system("clear") 
+
+list_product = []  # Lista global para almacenar los productos
+
+def add_items():
+    print(" Añadir Producto ")
+    name = input("Nombre del producto: ").strip().title()
+    price = float(input("Precio unitario: $"))
+    quantity = int(input("Cantidad disponible: "))
+    
+    new_product = {
+        "nombre": name,
+        "precio": price,
+        "cantidad": quantity
+    }
+    
+    list_product.append(new_product)
+    print(f"{name} añadido correctamente!")
+
+def consult_product():
+    print("Consultar Producto ")
+    search_name = input("Nombre del producto a buscar: ").strip().title()
+    
+    found = False
+    for product in list_product:
+        if product["nombre"] == search_name:
+            print(f"Nombre: {product['nombre']}")
+            print(f"Precio unitario: ${product['precio']:.2f}")
+            print(f"Cantidad disponible: {product['cantidad']}")
+            found = True
+            break
+    
+    if not found:
+        print("Producto no encontrado")
+
+def change_price():
+    print("\n--- Actualizar Precio ---")
+    product_name = input("Nombre del producto: ").strip().title()
+    
+    for product in list_product:
+        if product["nombre"] == product_name:
+            new_price = float(input("Nuevo precio: $"))
+            product["precio"] = new_price
+            print(f"Precio actualizado a ${new_price:.2f}")
+            return
+    
+    print("Producto no encontrado")
+
+def delete_product():
+    print("Eliminar Producto")
+    product_name = input("Nombre del producto a eliminar: ").strip().title()
+    
+    for index, product in enumerate(list_product):
+        if product["nombre"] == product_name:
+            del list_product[index]
+            print(f"Producto eliminado")
+            return
+    
+    print("Producto no encontrado")
+
+def calculate_total():
+    print("\n--- Calcular Valor Total ---")
+    total_tienda = 0
+    
+    for product in list_product:
+        total_producto = product["precio"] * product["cantidad"]
+        print(f"{product['nombre']}: ${total_producto:.2f}")
+        total_tienda += total_producto
+    
+    print(f"\n💰 Valor total de la tienda: ${total_tienda:.2f}")
+
+while True:
+    print("\n=== MENÚ PRINCIPAL ===")
+    print("1. Añadir productos")
+    print("2. Consultar productos")
+    print("3. Actualizar precios")
+    print("4. Eliminar productos")
+    print("5. Calcular valor total")
+    print("6. Salir")
+    choice = input("Elección: ").strip()
+    
+    if choice == "1":
+        add_items()
+    elif choice == "2":
+        consult_product()
+    elif choice == "3":
+        change_price()
+    elif choice == "4":
+        delete_product()
+    elif choice == "5":
+        calculate_total()
+    elif choice == "6":
+        print("Finalizado ")
+        break
+    else:
+        print("Opción inválida. Intente nuevamente.")
+    
+    if choice != "6":
+        cont = input("¿Desea realizar otra operación? (s/n): ").lower()
+        if cont != "s":
+            print("Finalizado")
+            break
+```
+
+**Principales cambios realizados:**
+
+1. **Campo de disponibilidad cambiado a cantidad:**
+   - Ahora se pide la cantidad numérica de unidades disponibles
+   - Se almacena en la clave "cantidad" del diccionario
+   - Se eliminó el booleano de disponibilidad (s/n)
+
+2. **Función calculate_total() modificada:**
+   - Eliminado el lambda
+   - Ahora calcula:
+     * Valor total por producto (precio × cantidad)
+     * Valor total acumulado de toda la tienda
+   - Muestra ambos totales con formato de dinero
+
+3. **Mejoras en los mensajes:**
+   - Más claros y descriptivos
+   - Formato de dinero con 2 decimales en todos los montos
+   - Mejor estructura visual de los reportes
+
+**Ejemplo de funcionamiento:**
+```
+=== MENÚ PRINCIPAL ===
+5. Calcular valor total
+
+--- Calcular Valor Total ---
+Arroz: $150.00
+Leche: $240.00
+Pan: $75.00
+
+💰 Valor total de la tienda: $465.00
+```
